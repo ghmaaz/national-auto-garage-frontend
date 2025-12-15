@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>National Auto Garage | Bike Service & Repair</title>
+
+  <meta name="description" content="National Auto Garage – Trusted two-wheeler service, repair & maintenance. Book bike service online and track status.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- 🔹 NAVBAR -->
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">National Auto Garage</div>
+
+    <!-- Mobile toggle -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <ul class="nav-links" id="navMenu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li id="myBookingsLink" style="display:none;">
+        <a href="my-bookings.html">My Bookings</a>
+      </li>
+
+      <li id="loginLink">
+        <a href="login.html" class="btn-sm">Login</a>
+      </li>
+
+      <li id="logoutLink" style="display:none;">
+        <a href="#" class="btn-sm danger">Logout</a>
+      </li>
+
+      <li>
+        <a href="booking.html">
+          <button class="btn">Book Service</button>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 🔹 HERO -->
+<section>
+  <div class="container">
+    <div class="card">
+      <h2 style="color:#1e3a8a; margin-bottom:12px;">
+        Reliable Two-Wheeler Service You Can Trust
+      </h2>
+
+      <p style="margin-bottom:24px; color:#4b5563;">
+        Professional bike servicing, engine repair & maintenance with transparent pricing and expert technicians.
+      </p>
+
+      <a href="booking.html">
+        <button class="btn">Book Service</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 SERVICES -->
+<section>
+  <div class="container">
+    <h2 style="margin-bottom:32px; color:#1e3a8a;">Our Services</h2>
+
+    <div class="service-grid">
+      <div class="card">
+        <h3><i class="fa-solid fa-motorcycle"></i> General Service</h3>
+        <p>Complete bike inspection & servicing.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-gear"></i> Engine Repair</h3>
+        <p>Advanced diagnostics & engine work.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-oil-can"></i> Oil Change</h3>
+        <p>Premium engine oil replacement.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-screwdriver-wrench"></i> Brake & Chain</h3>
+        <p>Safe braking & smooth performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 CTA -->
+<section style="background:#e0e7ff;">
+  <div class="container">
+    <h2 style="margin-bottom:14px; color:#1e3a8a;">
+      Your Bike Deserves Expert Care
+    </h2>
+
+    <p style="margin-bottom:22px; color:#374151;">
+      Book your service today and track its status online.
+    </p>
+
+    <a href="booking.html">
+      <button class="btn">Book Appointment</button>
+    </a>
+  </div>
+</section>
+
+<!-- 🔹 FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p><strong>National Auto Garage</strong></p>
+    <p>📍 Mosali, Surat</p>
+    <p>📞 +91 9XXXXXXXXX</p>
+    <p>✉️ nationalautogarage@gmail.com</p>
+
+    <p class="footer-sub">
+      © 2025 National Auto Garage • Trusted Bike Service
+    </p>
+  </div>
+</footer>
+
+<!-- 🔹 WHATSAPP BUTTON -->
+<a href="https://wa.me/919624844188"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- 🔹 AUTH -->
+<script src="js/auth.js"></script>
+
+<!-- 🔹 MOBILE MENU SCRIPT -->
+<script>
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+  }
+</script>
+
+</body>
+</html>
