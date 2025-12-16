@@ -251,3 +251,38 @@ section {
     padding: 20px;
   }
 }
+
+/* ===== MOBILE NAVBAR FIX ===== */
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Hamburger icon right corner */
+.menu-toggle {
+  margin-left: auto;
+  color: #1e3a8a;
+}
+
+/* Mobile menu styling */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #ffffff;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+
+  .nav-links a,
+  .nav-links button {
+    width: 90%;
+    text-align: center;
+  }
+}
