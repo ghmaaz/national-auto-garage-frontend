@@ -216,8 +216,11 @@ fetch("https://national-auto-garage.onrender.com/api/booking/all")
         <td data-label="Status">
           <select onchange="updateStatus('${b._id}', this.value)">
             <option ${b.status==="Pending"?"selected":""}>Pending</option>
+            <option ${b.status==="Approved"?"selected":""}>Approved</option>
+            <option ${b.status==="Rejected"?"selected":""}>Rejected</option>
             <option ${b.status==="Completed"?"selected":""}>Completed</option>
           </select>
+
         </td>
       `;
       table.appendChild(tr);
