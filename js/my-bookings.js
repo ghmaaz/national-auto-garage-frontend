@@ -1,50 +1,40 @@
-// 🔐 LOGIN CHECK
-if (localStorage.getItem("userLoggedIn") !== "true") {
-  alert("Please login to view your bookings");
-  window.location.href = "login.html";
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const tableBody = document.getElementById("bookingTableBody");
 
-// 🔥 TARGET CONTAINER
-const bookingList = document.getElementById("bookingList");
+  // 🔐 login check
+  if (localStorage.getItem("userLoggedIn") !== "true") {
+    window.location.href = "login.html";
+    return;
+  }
 
-// SAFETY CHECK
-if (!bookingList) {
-  alert("Booking container not found");
-}
+  // 📦 get bookings (demo: localStorage)
+  const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-// 🔥 FETCH BOOKINGS
-fetch("https://national-auto-garage.onrender.com/api/booking/all")
-  .then(res => res.json())
-  .then(bookings => {
+  if (bookings.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align:center; padding:20px;">
+          No bookings found
+        </td>
+      </tr>`;
+    return;
+  }
 
-    bookingList.innerHTML = "";
+  bookings.forEach(b => {
+    const row = document.createElement("tr");
 
-    if (!Array.isArray(bookings) || bookings.length === 0) {
-      bookingList.innerHTML = "<p>No bookings found.</p>";
-      return;
-    }
+    row.innerHTML = `
+      <td>${b.date || "-"}</td>
+      <td>${b.customerName}</td>
+      <td>${b.bikeName} (${b.bikeNumber})</td>
+      <td>${b.serviceType}</td>
+      <td>
+        <span class="badge ${b.pickup ? "yes" : "no"}">
+          ${b.pickup ? "Yes" : "No"}
+        </span>
+      </td>
+    `;
 
-    bookings.forEach(b => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.style.marginBottom = "16px";
-
-      card.innerHTML = `
-        <p><strong>Customer:</strong> ${b.customerName}</p>
-        <p><strong>Bike:</strong> ${b.bikeName} (${b.bikeNumber})</p>
-        <p><strong>Service:</strong> ${b.serviceType}</p>
-        <p>
-          <strong>Status:</strong>
-          <span style="color:orange;font-weight:600;">
-            ${b.status}
-          </span>
-        </p>
-      `;
-
-      bookingList.appendChild(card);
-    });
-  })
-  .catch(err => {
-    console.error("FETCH ERROR:", err);
-    bookingList.innerHTML = "<p>Error loading bookings.</p>";
+    tableBody.appendChild(row);
   });
+});
