@@ -49,7 +49,7 @@ function submitBooking() {
       const adminPhone = "918160991036";
 
       const message = `
-Hello 👋
+Hello Maaz Pathan 👋
 🚲 *National Auto Garage*
 
 📌 *New Booking Received*
@@ -81,3 +81,4 @@ Thank you 🙏
       alert("Server error. Please try again.");
     });
 }
+
