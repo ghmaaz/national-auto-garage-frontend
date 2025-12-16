@@ -1,4 +1,6 @@
-// 🔐 LOGIN CHECK
+// ===============================
+// LOGIN CHECK
+// ===============================
 if (localStorage.getItem("userLoggedIn") !== "true") {
   alert("Please login first");
   window.location.href = "login.html";
@@ -11,6 +13,7 @@ fetch("https://national-auto-garage.onrender.com/api/booking/all")
   .then(res => res.json())
   .then(bookings => {
 
+    // 🔥 FILTER USER BOOKINGS
     const myBookings = bookings.filter(
       b => b.userEmail === userEmail
     );
