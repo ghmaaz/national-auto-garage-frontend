@@ -2,13 +2,12 @@
 // LOGIN CHECK
 // ===============================
 if (localStorage.getItem("userLoggedIn") !== "true") {
-  // 🔴 redirect after login
   localStorage.setItem("redirectAfterLogin", "booking.html");
   window.location.href = "login.html";
 }
 
 // ===============================
-// SUBMIT BOOKING
+// SUBMIT BOOKING (BACKEND)
 // ===============================
 function submitBooking() {
 
@@ -17,64 +16,68 @@ function submitBooking() {
   const bikeNumber = document.getElementById("bikeNumber").value.trim();
   const bikeName = document.getElementById("bikeName").value.trim();
   const serviceType = document.getElementById("serviceType").value;
-  const pickup = document.getElementById("pickup").checked;
+  const pickupRequired = document.getElementById("pickup").checked ? "Yes" : "No";
+
+  const userEmail = localStorage.getItem("userEmail");
 
   if (!customerName || !phone || !bikeNumber || !bikeName || !serviceType) {
     alert("Please fill all fields");
     return;
   }
 
-  // ===============================
-  // SAVE BOOKING (LOCAL)
-  // ===============================
-  const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
-
-  const booking = {
-    id: Date.now(),
-    date: new Date().toLocaleString(),
+  const data = {
     customerName,
     phone,
     bikeNumber,
     bikeName,
     serviceType,
-    pickup
+    pickupRequired,
+    userEmail
   };
 
-  bookings.unshift(booking);
-  localStorage.setItem("bookings", JSON.stringify(bookings));
+  fetch("https://national-auto-garage.onrender.com/api/booking/create", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(result => {
 
-  // ===============================
-  // 📲 WHATSAPP MESSAGE
-  // ===============================
-  const adminPhone = "918160991036"; // 🔴 CHANGE ONLY IF NEEDED
+      // ===============================
+      // 📲 WHATSAPP MESSAGE
+      // ===============================
+      const adminPhone = "918160991036";
 
-  const message = `
-Hello 👋  
+      const message = `
+Hello 👋
 🚲 *National Auto Garage*
 
 📌 *New Booking Received*
 
-🧾 Booking ID: ${booking.id}
 👤 Customer: ${customerName}
 📞 Mobile: ${phone}
 🏍 Bike: ${bikeName} (${bikeNumber})
 🛠 Service: ${serviceType}
-🚚 Pickup: ${pickup ? "Yes" : "No"}
-📅 Date: ${booking.date}
+🚚 Pickup: ${pickupRequired}
+📧 Email: ${userEmail}
+⏳ Status: Pending
 
-Please check dashboard.
+Please check admin dashboard.
 Thank you 🙏
-`;
+      `;
 
-  const whatsappURL =
-    "https://wa.me/" +
-    adminPhone +
-    "?text=" +
-    encodeURIComponent(message);
+      const whatsappURL =
+        "https://wa.me/" +
+        adminPhone +
+        "?text=" +
+        encodeURIComponent(message);
 
-  // 🔥 IMPORTANT (must be direct user action)
-  window.open(whatsappURL, "_blank");
+      window.open(whatsappURL, "_blank");
 
-  alert("Booking submitted successfully!");
-  window.location.href = "my-bookings.html";
+      alert("Booking submitted successfully!");
+      window.location.href = "my-bookings.html";
+    })
+    .catch(() => {
+      alert("Server error. Please try again.");
+    });
 }
