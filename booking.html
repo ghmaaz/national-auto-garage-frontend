@@ -5,7 +5,6 @@
   <title>Book Service | National Auto Garage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- MAIN CSS -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -73,13 +72,19 @@
       grid-column: 1 / -1;
     }
 
-          .checkbox-row{
-          display:flex;
-          align-items:center;
-          gap:8px;
-        }
+    /* ✅ CHECKBOX PERFECT FIX */
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: #374151;
+    }
 
-
+    .checkbox-row input {
+      width: 16px;
+      height: 16px;
+    }
 
     .confirm-btn {
       width: 100%;
@@ -108,7 +113,6 @@
 
 <body>
 
-<!-- 🔹 NAVBAR -->
 <nav class="navbar">
   <div class="container nav-flex">
     <div class="logo">National Auto Garage</div>
@@ -123,14 +127,15 @@
   </div>
 </nav>
 
-<!-- 🔹 BOOKING -->
 <div class="booking-wrapper">
   <div class="booking-card">
 
     <h2>Book Bike Service</h2>
     <p>Fill details to schedule your bike service</p>
 
+    <!-- ✅ FORM GRID START -->
     <div class="form-grid">
+
       <input id="customerName" type="text" placeholder="Customer Name">
       <input id="phone" type="tel" placeholder="Mobile Number"
              maxlength="10"
@@ -146,12 +151,14 @@
         <option value="Service + Engine">Service + Engine</option>
       </select>
 
+      <!-- ✅ ONE-LINE CHECKBOX -->
       <div class="checkbox-row full-width">
         <input type="checkbox" id="pickup">
         <label for="pickup">Pickup & Drop Required</label>
       </div>
 
-
+    </div>
+    <!-- ✅ FORM GRID END -->
 
     <button class="confirm-btn" onclick="submitBooking()">
       Confirm Booking
@@ -160,7 +167,6 @@
   </div>
 </div>
 
-<!-- 🔹 SCRIPTS -->
 <script src="js/auth.js"></script>
 <script src="js/booking.js"></script>
 
