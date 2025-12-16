@@ -1,4 +1,4 @@
-// Firebase SDKs
+// Firebase SDKs (v10)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
@@ -6,9 +6,11 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+// 🔐 Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyC2xWj8Tycwm60CdUfXLhJjsBTXpP6wmVc",
   authDomain: "national-auto-garage.firebaseapp.com",
@@ -18,26 +20,42 @@ const firebaseConfig = {
   appId: "1:866545378100:web:e847dce29547ad33c8fb61"
 };
 
+// Init
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
+export const provider = new GoogleAuthProvider();
 
-// 🔐 EMAIL SIGNUP
-window.emailSignup = async function (email, password) {
+// ===============================
+// EMAIL SIGNUP
+// ===============================
+export function emailSignup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
-};
+}
 
-// 🔐 EMAIL LOGIN
-window.emailLogin = async function (email, password) {
+// ===============================
+// EMAIL LOGIN
+// ===============================
+export function emailLogin(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
-};
+}
 
-// 🔐 GOOGLE LOGIN
-window.googleSignup = async function () {
-  return signInWithPopup(auth, googleProvider);
-};
+// ===============================
+// GOOGLE LOGIN / SIGNUP
+// ===============================
+export function googleLogin() {
+  return signInWithPopup(auth, provider);
+}
 
-// 🔐 LOGOUT
-window.logoutUser = async function () {
+// ===============================
+// LOGOUT
+// ===============================
+export function logoutUser() {
   return signOut(auth);
-};
+}
+
+// ===============================
+// AUTH STATE
+// ===============================
+export function watchAuth(callback) {
+  onAuthStateChanged(auth, callback);
+}
