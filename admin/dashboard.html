@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | National Auto Garage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    body {
+      background:#f3f4f6;
+      font-family:Poppins,sans-serif;
+      margin:0;
+    }
+
+    .dashboard-wrapper {
+      padding:30px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    h2 {
+      color:#1e3a8a;
+      margin-bottom:20px;
+    }
+
+    table {
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 12px 25px rgba(0,0,0,.08);
+    }
+
+    thead {
+      background:#1e3a8a;
+      color:#fff;
+    }
+
+    th, td {
+      padding:14px;
+      font-size:14px;
+      text-align:left;
+    }
+
+    tbody tr:nth-child(even) {
+      background:#f9fafb;
+    }
+
+    .badge {
+      padding:4px 10px;
+      border-radius:12px;
+      font-size:12px;
+      font-weight:500;
+      display:inline-block;
+    }
+
+    .yes { background:#dcfce7; color:#166534; }
+    .no { background:#fee2e2; color:#991b1b; }
+
+    select {
+      padding:6px;
+      border-radius:8px;
+    }
+
+    .logout-btn {
+      float:right;
+      background:#ef4444;
+      color:#fff;
+      border:none;
+      padding:8px 14px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    @media (max-width:768px) {
+      table, thead, tbody, th, td, tr {
+        display:block;
+      }
+
+      thead {
+        display:none;
+      }
+
+      tr {
+        background:#fff;
+        margin-bottom:15px;
+        border-radius:12px;
+        padding:12px;
+        box-shadow:0 8px 20px rgba(0,0,0,.05);
+      }
+
+      td {
+        display:flex;
+        justify-content:space-between;
+        padding:8px 0;
+      }
+
+      td::before {
+        content:attr(data-label);
+        font-weight:600;
+        color:#374151;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">Admin Panel</div>
+    <button class="logout-btn" onclick="adminLogout()">Logout</button>
+  </div>
+</nav>
+
+<div class="dashboard-wrapper">
+  <h2>All Bookings</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Bike</th>
+        <th>Service</th>
+        <th>Pickup</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody id="adminBookingTable">
+      <!-- Rows injected by JS -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+/* 🔐 SIMPLE ADMIN PROTECTION */
+if (localStorage.getItem("adminLoggedIn") !== "true") {
+  window.location.href = "admin-login.html";
+}
+
+/* 🔓 LOGOUT */
+function adminLogout() {
+  localStorage.removeItem("adminLoggedIn");
+  window.location.href = "admin-login.html";
+}
+
+/* 📦 LOAD BOOKINGS */
+fetch("https://national-auto-garage.onrender.com/api/booking/all")
+  .then(res => res.json())
+  .then(data => {
+    const table = document.getElementById("adminBookingTable");
+
+    if (!data || data.length === 0) {
+      table.innerHTML = "<tr><td colspan='6'>No bookings found</td></tr>";
+      return;
+    }
+
+    table.innerHTML = "";
+
+    data.forEach(b => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td data-label="Date">${new Date(b.createdAt).toLocaleString()}</td>
+        <td data-label="Customer">${b.customerName}</td>
+        <td data-label="Bike">${b.bikeName} (${b.bikeNumber})</td>
+        <td data-label="Service">${b.serviceType}</td>
+        <td data-label="Pickup">
+          <span class="badge ${b.pickupRequired === "Yes" ? "yes" : "no"}">
+            ${b.pickupRequired}
+          </span>
+        </td>
+        <td data-label="Status">
+          <select onchange="updateStatus('${b._id}', this.value)">
+            <option ${b.status==="Pending"?"selected":""}>Pending</option>
+            <option ${b.status==="Completed"?"selected":""}>Completed</option>
+          </select>
+        </td>
+      `;
+
+      table.appendChild(tr);
+    });
+  });
+
+/* 🔄 UPDATE STATUS */
+function updateStatus(id, status) {
+  fetch("https://national-auto-garage.onrender.com/api/booking/update-status/" + id, {
+    method:"PUT",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ status })
+  });
+}
+</script>
+
+</body>
+</html>
