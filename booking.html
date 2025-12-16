@@ -73,14 +73,12 @@
       grid-column: 1 / -1;
     }
 
-        .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      font-size: 14px;
-      color: #374151;
-    }
+          .checkbox-row{
+          display:flex;
+          align-items:center;
+          gap:8px;
+        }
+
 
 
     .confirm-btn {
@@ -148,12 +146,11 @@
         <option value="Service + Engine">Service + Engine</option>
       </select>
 
-                <div class="checkbox-row full-width">
-            <label for="pickup">
-              <input type="checkbox" id="pickup">
-              Pickup & Drop Required
-            </label>
-          </div>
+      <div class="checkbox-row full-width">
+        <input type="checkbox" id="pickup">
+        <label for="pickup">Pickup & Drop Required</label>
+      </div>
+
 
 
     <button class="confirm-btn" onclick="submitBooking()">
