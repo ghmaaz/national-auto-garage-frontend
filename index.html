@@ -1,166 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>National Auto Garage | Bike Service & Repair</title>
-
-  <meta name="description" content="National Auto Garage – Trusted two-wheeler service, repair & maintenance. Book bike service online and track status.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- Icons -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<title>National Auto Garage</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-<!-- 🔹 NAVBAR -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="container nav-flex">
     <div class="logo">National Auto Garage</div>
 
-    <!-- MOBILE MENU BUTTON -->
     <div class="menu-toggle" onclick="openMenu()">
       <i class="fa-solid fa-bars"></i>
     </div>
 
-    <!-- DESKTOP LINKS -->
-    <ul class="nav-links desktop-menu">
+    <ul class="desktop-menu">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="booking.html" class="btn-sm">Book Service</a></li>
+      <li><a href="booking.html">Book Service</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- 🔹 MOBILE SIDEBAR -->
+<!-- MOBILE SIDEBAR -->
 <div id="mobileMenu" class="mobile-menu">
   <div class="mobile-header">
     <span>Menu</span>
     <i class="fa-solid fa-xmark" onclick="closeMenu()"></i>
   </div>
 
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="booking.html">Book Service</a>
-  <a href="login.html">Login</a>
+  <a href="index.html" class="nav-item">🏠 Home</a>
+  <a href="about.html" class="nav-item">ℹ️ About</a>
+  <a href="contact.html" class="nav-item">📞 Contact</a>
+  <a href="booking.html" class="nav-item">🛠 Book Service</a>
+
+  <a href="my-bookings.html" id="sbMyBookings" class="nav-item">📋 My Bookings</a>
+  <a href="login.html" id="sbLogin" class="nav-item">🔐 Login</a>
+  <a href="signup.html" id="sbSignup" class="nav-item">📝 Signup</a>
+  <a href="#" id="sbLogout" class="nav-item danger">🚪 Logout</a>
 </div>
 
-<!-- 🔹 OVERLAY -->
 <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-<!-- 🔹 HERO -->
+<!-- HERO -->
 <section>
   <div class="container">
     <div class="card">
-      <h2 style="color:#1e3a8a; margin-bottom:12px;">
-        Reliable Two-Wheeler Service You Can Trust
-      </h2>
-
-      <p style="margin-bottom:24px; color:#4b5563;">
-        Professional bike servicing, engine repair & maintenance with transparent pricing and expert technicians.
-      </p>
-
-      <a href="booking.html">
-        <button class="btn">Book Service</button>
-      </a>
+      <h2 style="color:#1e3a8a">Reliable Two-Wheeler Service You Can Trust</h2>
+      <p>Professional bike servicing & repair with expert technicians.</p>
+      <a href="booking.html"><button class="btn">Book Service</button></a>
     </div>
   </div>
 </section>
 
-<!-- 🔹 SERVICES -->
-<section>
-  <div class="container">
-    <h2 style="margin-bottom:32px; color:#1e3a8a;">Our Services</h2>
-
-    <div class="service-grid">
-      <div class="card">
-        <h3><i class="fa-solid fa-motorcycle"></i> General Service</h3>
-        <p>Complete bike inspection & servicing.</p>
-      </div>
-
-      <div class="card">
-        <h3><i class="fa-solid fa-gear"></i> Engine Repair</h3>
-        <p>Advanced diagnostics & engine work.</p>
-      </div>
-
-      <div class="card">
-        <h3><i class="fa-solid fa-oil-can"></i> Oil Change</h3>
-        <p>Premium engine oil replacement.</p>
-      </div>
-
-      <div class="card">
-        <h3><i class="fa-solid fa-screwdriver-wrench"></i> Brake & Chain</h3>
-        <p>Safe braking & smooth performance.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 🔹 CTA -->
-<section style="background:#e0e7ff;">
-  <div class="container">
-    <h2 style="margin-bottom:14px; color:#1e3a8a;">
-      Your Bike Deserves Expert Care
-    </h2>
-
-    <p style="margin-bottom:22px; color:#374151;">
-      Book your service today and track its status online.
-    </p>
-
-    <a href="booking.html">
-      <button class="btn">Book Appointment</button>
-    </a>
-  </div>
-</section>
-
-<!-- 🔹 FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <p><strong>National Auto Garage</strong></p>
-    <p>📍 Mosali, Surat</p>
-    <p>📞 +91 9XXXXXXXXX</p>
-    <p>✉️ nationalautogarage@gmail.com</p>
-
-    <p class="footer-sub">
-      © 2025 National Auto Garage • Trusted Bike Service
-    </p>
-  </div>
+  <p><strong>National Auto Garage</strong></p>
+  <p>© 2025</p>
 </footer>
 
-<!-- 🔹 WHATSAPP BUTTON -->
-<a href="https://wa.me/919624844188"
-   class="whatsapp-float"
-   target="_blank"
-   aria-label="Chat on WhatsApp">
+<a href="https://wa.me/919624844188" class="whatsapp-float" target="_blank">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- 🔹 AUTH -->
-<script src="js/auth.js"></script>
-
-<!-- 🔹 MOBILE MENU SCRIPT -->
 <script>
-  function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("show");
-  }
-</script>
+const loggedIn = localStorage.getItem("userLoggedIn")==="true";
 
-<script>
-  function openMenu() {
-    document.getElementById("mobileMenu").classList.add("show");
-    document.getElementById("menuOverlay").classList.add("show");
-  }
+sbLogin.style.display = loggedIn?"none":"block";
+sbSignup.style.display = loggedIn?"none":"block";
+sbLogout.style.display = loggedIn?"block":"none";
+sbMyBookings.style.display = loggedIn?"block":"none";
 
-  function closeMenu() {
-    document.getElementById("mobileMenu").classList.remove("show");
-    document.getElementById("menuOverlay").classList.remove("show");
-  }
+sbLogout.onclick = ()=>{
+  localStorage.clear();
+  location.href="index.html";
+};
+
+function openMenu(){
+  mobileMenu.classList.add("show");
+  menuOverlay.classList.add("show");
+}
+function closeMenu(){
+  mobileMenu.classList.remove("show");
+  menuOverlay.classList.remove("show");
+}
 </script>
 
 </body>
