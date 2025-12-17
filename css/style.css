@@ -1,366 +1,171 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --primary-blue: #1e3a8a;
-  --accent-orange: #f59e0b;
-  --dark-text: #1f2933;
-  --light-bg: #f8fafc;
-  --white: #ffffff;
-  --success-green: #16a34a;
+  --primary-blue:#1e3a8a;
+  --accent-orange:#f59e0b;
+  --dark-text:#1f2933;
+  --light-bg:#f8fafc;
+  --white:#ffffff;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--light-bg);
+  color:var(--dark-text);
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--light-bg);
-  color: var(--dark-text);
-  line-height: 1.6;
+/* ================= NAVBAR ================= */
+.navbar{
+  background:#fff;
+  padding:14px 0;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
 
-/* ===============================
-   CONTAINER
-================================ */
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: auto;
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
 }
 
-/* ===============================
-   NAVBAR
-================================ */
-.navbar {
-  background: var(--white);
-  padding: 14px 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+.nav-flex{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.nav-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.logo{
+  font-size:20px;
+  font-weight:600;
+  color:var(--primary-blue);
 }
 
-/* 🔥 LOGO + MENU (LEFT SIDE) */
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* DESKTOP MENU */
+.desktop-menu{
+  list-style:none;
+  display:flex;
+  gap:18px;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--primary-blue);
-  white-space: nowrap;
+.desktop-menu a{
+  text-decoration:none;
+  color:#1f2933;
+  font-size:14px;
 }
 
-/* MENU ICON */
-.menu-toggle {
-  display: none;
-  font-size: 22px;
-  cursor: pointer;
+.desktop-menu a.active{
+  color:var(--primary-blue);
+  font-weight:600;
 }
 
-/* NAV LINKS */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 18px;
-  align-items: center;
+/* HAMBURGER */
+.menu-toggle{
+  display:none;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--primary-blue);
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: var(--dark-text);
-  font-size: 14px;
+/* ================= MOBILE SIDEBAR ================= */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:260px;
+  height:100vh;
+  background:#fff;
+  padding:20px;
+  box-shadow:-4px 0 20px rgba(0,0,0,.15);
+  transition:right .35s cubic-bezier(.4,0,.2,1);
+  z-index:1001;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 
-.nav-links a:hover {
-  color: var(--primary-blue);
+.mobile-menu.show{ right:0 }
+
+.mobile-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:18px;
+  color:var(--primary-blue);
 }
 
-.nav-links a.active {
-  color: var(--primary-blue);
-  font-weight: 600;
+.nav-item{
+  text-decoration:none;
+  color:#1f2933;
+  font-size:15px;
+  padding:10px;
+  border-radius:8px;
 }
 
-/* ===============================
-   BUTTONS
-================================ */
-.btn {
-  background: var(--accent-orange);
-  color: var(--dark-text);
-  padding: 14px 26px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+.nav-item.active{
+  background:#e0e7ff;
+  color:#1e3a8a;
+  font-weight:600;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
-}
-
-/* ===============================
-   SECTION / CARDS
-================================ */
-section {
-  padding: 70px 0;
-}
-
-.card {
-  background: var(--white);
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-}
-
-/* ===============================
-   SERVICES GRID
-================================ */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-}
-
-/* ===============================
-   FOOTER
-================================ */
-.footer {
-  background: #111827;
-  color: #9ca3af;
-  padding: 32px 0;
-  text-align: center;
-}
-
-.footer-sub {
-  font-size: 13px;
-  margin-top: 6px;
-  color: #6b7280;
-}
-
-/* ===============================
-   STATUS BADGES
-================================ */
-.status {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.status.Pending {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.status.Approved {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.status.Completed {
-  background: #e0e7ff;
-  color: #1e40af;
-}
-
-.status.Rejected {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-/* ===============================
-   WHATSAPP BUTTON
-================================ */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  color: #fff;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  z-index: 999;
-}
-
-/* ===============================
-   🔥 MOBILE RESPONSIVE NAVBAR
-================================ */
-@media (max-width: 768px) {
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 14px;
-    background: var(--white);
-    padding: 16px 0;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links li {
-    text-align: center;
-    padding: 8px 0;
-  }
-
-  .btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  section {
-    padding: 40px 0;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  .card {
-    padding: 20px;
-  }
-}
-
-/* ===== MOBILE NAVBAR FIX ===== */
-.nav-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Hamburger icon right corner */
-.menu-toggle {
-  margin-left: auto;
-  color: #1e3a8a;
-}
-
-/* Mobile menu styling */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: #ffffff;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 20px 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  }
-
-  .nav-links a,
-  .nav-links button {
-    width: 90%;
-    text-align: center;
-  }
-}
-
-/* ===== MOBILE SIDEBAR MENU ===== */
-
-.menu-toggle {
-  display: none;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.desktop-menu {
-  display: flex;
-}
-
-@media (max-width: 768px) {
-
-  .desktop-menu {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* SIDEBAR */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -260px;
-  width: 260px;
-  height: 100vh;
-  background: #ffffff;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-  padding: 20px;
-  transition: right 0.3s ease;
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.mobile-menu a {
-  text-decoration: none;
-  color: #1f2933;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.mobile-menu.show {
-  right: 0;
-}
-
-/* SIDEBAR HEADER */
-.mobile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 18px;
-  color: #1e3a8a;
-  margin-bottom: 10px;
-}
-
-.mobile-header i {
-  cursor: pointer;
-}
+.nav-item.danger{color:#dc2626}
 
 /* OVERLAY */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 1000;
-  display: none;
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  display:none;
+  z-index:1000;
 }
 
-.menu-overlay.show {
-  display: block;
+.menu-overlay.show{display:block}
+
+/* ================= COMMON ================= */
+section{padding:70px 0}
+
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+.btn{
+  background:var(--accent-orange);
+  border:none;
+  padding:14px 26px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.footer{
+  background:#111827;
+  color:#9ca3af;
+  text-align:center;
+  padding:32px 0;
+}
+
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25d366;
+  color:#fff;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  z-index:999;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .desktop-menu{display:none}
+  .menu-toggle{display:block}
+  section{padding:40px 0}
 }
