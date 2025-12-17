@@ -20,43 +20,39 @@
 <!-- 🔹 NAVBAR -->
 <nav class="navbar">
   <div class="container nav-flex">
+    <div class="logo">National Auto Garage</div>
 
-    <!-- 🔹 LEFT (LOGO + MENU ICON) -->
-    <div class="nav-left">
-      <div class="logo">National Auto Garage</div>
-
-      <!-- Mobile toggle (RIGHT OF LOGO) -->
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fa-solid fa-bars"></i>
-      </div>
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="openMenu()">
+      <i class="fa-solid fa-bars"></i>
     </div>
 
-    <!-- 🔹 NAV LINKS -->
-    <ul class="nav-links" id="navMenu">
+    <!-- DESKTOP LINKS -->
+    <ul class="nav-links desktop-menu">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
-
-      <li id="myBookingsLink" style="display:none;">
-        <a href="my-bookings.html">My Bookings</a>
-      </li>
-
-      <li id="loginLink">
-        <a href="login.html" class="btn-sm">Login</a>
-      </li>
-
-      <li id="logoutLink" style="display:none;">
-        <a href="#" class="btn-sm danger">Logout</a>
-      </li>
-
-      <li>
-        <a href="booking.html">
-          <button class="btn">Book Service</button>
-        </a>
-      </li>
+      <li><a href="booking.html" class="btn-sm">Book Service</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- 🔹 MOBILE SIDEBAR -->
+<div id="mobileMenu" class="mobile-menu">
+  <div class="mobile-header">
+    <span>Menu</span>
+    <i class="fa-solid fa-xmark" onclick="closeMenu()"></i>
+  </div>
+
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="booking.html">Book Service</a>
+  <a href="login.html">Login</a>
+</div>
+
+<!-- 🔹 OVERLAY -->
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
 <!-- 🔹 HERO -->
 <section>
@@ -152,6 +148,18 @@
 <script>
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
+  }
+</script>
+
+<script>
+  function openMenu() {
+    document.getElementById("mobileMenu").classList.add("show");
+    document.getElementById("menuOverlay").classList.add("show");
+  }
+
+  function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("show");
+    document.getElementById("menuOverlay").classList.remove("show");
   }
 </script>
 
